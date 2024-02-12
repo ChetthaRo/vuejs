@@ -157,7 +157,6 @@ export default {
     },
     variants: ['elevated', 'flat', 'tonal', 'outlined']
 
-
 }
 
 </script>

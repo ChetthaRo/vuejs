@@ -1,8 +1,8 @@
 <template>
     <div class="calculate-grade pt-10">
         <v-form ref="form" @submit.prevent="formValidate">
-            <v-row justify="center" >
-                <v-col cols="12">
+            <v-row justify="center">
+                <v-col cols="12" align-self="center" class="test">
                     <v-card width="540px" height="400px">
                         <v-row>
                             <v-col>
@@ -29,9 +29,10 @@
 
                     </v-card>
                 </v-col>
-                <v-col>
+                <v-col col="12">
                     <v-card class="pt-10">
-                        <v-data-table :loading="loading" :headers="headers" :items="dataStudent"
+                        <Tableset :headers="headers" :dataStudents="dataStudent" />
+                        <!-- <v-data-table :loading="loading" :headers="headers" :items="dataStudent"
                             class="cs-pointer text-cente" hide-default-footer disable-pagination>
                             <template #[`item.description`]="{ value }">
                                 <div style="max-width: 425px">
@@ -49,7 +50,7 @@
                             <template #[`item.price`]="{ item }">
                                 {{ item.price }} บาท
                             </template>
-                        </v-data-table>
+                        </v-data-table> -->
                     </v-card>
                 </v-col>
             </v-row>
@@ -59,8 +60,11 @@
 
 <script>
 import Swal from 'sweetalert2'
-
+import Tableset from '../components/Tableset.vue'
 export default {
+    components: {
+        Tableset
+    },
     data() {
         return {
             score: 0,
@@ -147,21 +151,10 @@ export default {
             console.log('dataStudent :', this.dataStudent)
             return Swal.fire({
                 title: "Good job!",
+                icon: "success",
                 text: `${this.firstName} ${this.lastName} ได้เกรด ${this.grade}`,
 
             });
-
-            // this.CalculateGrade(score).then((response) => {
-            //     console.log('res for fetch', response)
-
-            // }).catch((error) => {
-            //     console.log(error)
-            //     this.$swal({
-            //         icon: 'error',
-            //         title: 'Error',
-            //         text: 'Hello',
-            //     })
-            // })
         }
     }
 }
@@ -178,5 +171,9 @@ export default {
 
 .data-input {
     align-items: center;
+}
+
+.test {
+    text-align: -webkit-center;
 }
 </style>
